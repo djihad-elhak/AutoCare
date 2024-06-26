@@ -108,8 +108,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'autocare.car.services@gmail.com'  # Staff's Gmail address
-EMAIL_HOST_PASSWORD = 'yojv wdvm xfdi utwp'  
+EMAIL_HOST_USER = '#your email'  # Staff's Gmail address
+EMAIL_HOST_PASSWORD = '#create a email app password'  
 
 
 
@@ -130,9 +130,9 @@ WSGI_APPLICATION = 'gme.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'car',            # Name of the MySQL database
-        'USER': 'root',                # MySQL username
-        'PASSWORD': 'blackpink',          # MySQL password
+        'NAME': 'your database name',            # Name of the MySQL database
+        'USER': 'your username',                # MySQL username
+        'PASSWORD': '#your password',          # MySQL password
         'HOST': 'localhost',           # Host where MySQL server is running (usually 'localhost')
         'PORT': '3306',                # Port of MySQL server (usually '3306' for MySQL)
     }
