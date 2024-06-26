@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test API Form</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Test API Form</h1>
+    <form id="bookingForm">
+        <label for="first_name">First Name:</label>
+        <input type="text" id="first_name" name="first_name" required><br>
+
+        <label for="last_name">Last Name:</label>
+        <input type="text" id="last_name" name="last_name" required><br>
+
+        <label for="phone_number">Phone Number:</label>
+        <input type="text" id="phone_number" name="phone_number" required><br>
+
+        <label for="car_plate_number">Car Plate Number:</label>
+        <input type="text" id="car_plate_number" name="car_plate_number" required><br>
+
+        <label for="car_brand">Car Brand:</label>
+        <select id="car_brand" name="car_brand" required>
+            <option value="">Select Car Brand</option>
+            <!-- Car brand options will be populated dynamically -->
+        </select><br>
+
+        <label for="car_model">Car Model:</label>
+        <input type="text" id="car_model" name="car_model" required><br>
+
+        <label for="services">Services:</label>
+        <select id="services" name="services" multiple required>
+            <option value="">Select Services</option>
+            <!-- Car services options will be populated dynamically based on selected car brand -->
+        </select><br>
+
+        <label for="booking_date">Booking Date:</label>
+        <input type="date" id="booking_date" name="booking_date" required><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Fetch car brands from the backend API
+            fetch("http://localhost:8000/api/car-brands/")
+                .then(response => response.json())
+                .then(data => {
+                    const carBrandSelect = document.getElementById("car_brand");
+                    data.forEach(brand => {
+                        const option = document.createElement("option");
+                        option.value = brand.id; // Assuming the brand object has an 'id' attribute
+                        option.textContent = brand.name; // Assuming the brand object has a 'name' attribute
+                        carBrandSelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error("Error fetching car brands:", error));
+
+            // Fetch unavailable dates from the backend API
+            fetch("http://localhost:8000/api/unavailable-dates/")
+                .then(response => response.json())
+                .then(data => {
+                    const unavailableDates = data.map(date => date.date);
+
+                    // Initialize date picker
+                    const bookingDateInput = document.getElementById("booking_date");
+                    const today = new Date().toISOString().split("T")[0]; // Get today's date
+                    bookingDateInput.setAttribute("min", today);
+
+                    // Disable unavailable dates
+                    bookingDateInput.addEventListener("focus", function () {
+                        const maxDate = new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split("T")[0]; // Set max date 1 year from today
+                        bookingDateInput.setAttribute("max", maxDate);
+
+                        unavailableDates.forEach(date => {
+                            if (date >= today && date <= maxDate) {
+                                const option = document.createElement("option");
+                                option.value = date;
+                                option.textContent = date;
+                                bookingDateInput.appendChild(option);
+                            }
+                        });
+                    });
+                })
+                .catch(error => console.error("Error fetching unavailable dates:", error));
+        });
+
+        document.getElementById("car_brand").addEventListener("change", function () {
+            const selectedBrandId = this.value;
+            const servicesSelect = document.getElementById("services");
+            servicesSelect.innerHTML = ""; // Clear previous options
+
+            // Fetch services for the selected car brand from the backend API
+            fetch(`http://localhost:8000/api/services/${selectedBrandId}/`)
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(service => {
+                        const option = document.createElement("option");
+                        option.value = service.id; // Assuming the service object has an 'id' attribute
+                        option.textContent = service.name; // Assuming the service object has a 'name' attribute
+                        servicesSelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error("Error fetching services:", error));
+        });
+
+        document.getElementById("bookingForm").addEventListener("submit", async function(event) {
+            event.preventDefault();
+
+            // Create FormData object and append CSRF token
+            const formData = new FormData(this);
+            formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+
+            try {
+                const response = await fetch("http://localhost:8000/api/booking/", {
+                    method: "POST",
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    throw new Error("Failed to submit form.");
+                }
+
+                const data = await response.json();
+                console.log("Form submitted successfully:", data);
+                // You can handle the response here, such as displaying a success message
+            } catch (error) {
+                console.error("Form submission failed:", error);
+                // You can handle errors here, such as displaying an error message
+            }
+        });
+    </script>
+</body>
+</html>

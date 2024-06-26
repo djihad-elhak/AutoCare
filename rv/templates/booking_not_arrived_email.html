@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Did Not Arrive</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #ff6347;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        p {
+            margin-bottom: 10px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+        .booking-info {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .booking-info h3 {
+            color: #ff6347;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Car Did Not Arrive</h2>
+        <p>Dear {{ first_name }},</p>
+        <p>We regret to inform you that your car for booking ID {{ booking_id }} did not arrive.</p>
+        <div class="booking-info">
+            <h3>Booking Details</h3>
+            <ul>
+                <li><strong>First Name:</strong> {{ first_name }}</li>
+                <li><strong>Last Name:</strong> {{ last_name }}</li>
+                <li><strong>Car Brand:</strong> {{ car_brand }}</li>
+                <li><strong>Car Model:</strong> {{ car_model }}</li>
+                <li><strong>Booking Date:</strong> {{ booking_date }}</li>
+                <!-- Add more booking details as needed -->
+            </ul>
+        </div>
+        <p>Please contact us for further assistance.</p>
+        <p>Thank you.</p>
+    </div>
+</body>
+</html>

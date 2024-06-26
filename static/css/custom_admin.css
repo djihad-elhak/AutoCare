@@ -1,0 +1,20 @@
+body {
+    background-color: #f0f0f0;
+}
+
+#header {
+    background-color: #333;
+    color: #fff;
+}
+
+#header .logo {
+    color: #fff;
+}
+
+a {
+    color: #007bff;
+}
+
+a:hover {
+    color: #0056b3;
+}

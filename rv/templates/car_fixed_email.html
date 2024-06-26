@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Car Is Fixed</title>
+    <!-- Integrate Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif; /* Change to a tech-related font like Roboto */
+            line-height: 1.6;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header img {
+            max-width: 100px; /* Adjust the logo size as needed */
+        }
+        h1 {
+            color: #333333;
+            text-align: center;
+        }
+        p {
+            color: #666666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header with logo -->
+        <div class="header">
+            <img src="logo1.jpg" alt="Autocare Logo">
+        </div>
+        <h1>Your Car Is Fixed</h1>
+        <p>Dear {{ first_name }} {{ last_name }},</p>
+        <p>We are pleased to inform you that your car ({{ car_brand }} - {{ car_model }}) has been fixed and is ready for pickup.</p>
+        <p>Please contact us for further instructions.</p>
+        <p>Best regards,</p>
+        <p>{{ staff }}</p>
+        <p>The Car Fix Workshop Team</p>
+    </div>
+</body>
+</html>

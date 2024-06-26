@@ -1,0 +1,43 @@
+<!-- car_irreparable_email.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Car Is Irreparable</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333333;
+            text-align: center;
+        }
+        p {
+            color: #666666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Car Is Irreparable</h1>
+        <p>Dear {{ first_name }} {{ last_name }},</p>
+        <p>We regret to inform you that your car ({{ car_brand }} - {{ car_model }}) is irreparable.</p>
+        <p>Please contact us for further assistance or to discuss your options.</p>
+        <p>Best regards,</p>
+        <p>The Car Fix Workshop Team</p>
+    </div>
+</body>
+</html>

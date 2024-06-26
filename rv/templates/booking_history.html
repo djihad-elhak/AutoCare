@@ -1,0 +1,17 @@
+<!-- booking_history.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking History</title>
+</head>
+<body>
+    <h1>Booking History</h1>
+    <ul>
+        {% for booking in booking_history %}
+            <li>{{ booking.car_model }} - {{ booking.first_name }} {{ booking.last_name }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
