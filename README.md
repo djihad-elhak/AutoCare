@@ -6,7 +6,7 @@ The repository is the Django backend. Accounts, bookings and status changes are 
 
 | | |
 | --- | --- |
-| Author | Djihad El Hak Belkhir · [djihad-elhak](https://github.com/djihad-elhak) |
+| Author | Djoud El Hak Belkhir · [djihad-elhak](https://github.com/djihad-elhak) |
 | Stack | Django 5.0, Django REST framework, MySQL, Jazzmin |
 | Project package | `gme` |
 | App | `rv` |
